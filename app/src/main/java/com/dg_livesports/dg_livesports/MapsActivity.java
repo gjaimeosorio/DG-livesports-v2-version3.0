@@ -75,10 +75,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             "Nuevo Los Cármenes",
             "Gran Canaria",
             "Municipal Butarque",
-
-
-
-    };
+            "La Rosaleda",
+            "El Sadar",
+            "Anoeta",
+            "Benito Villamarín",
+            "Santiago Bernabéu",
+            "Ramón Sánchez-Pizjuán",
+            "El Molinón",
+            "Mestalla",
+            "El Madrigal"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
