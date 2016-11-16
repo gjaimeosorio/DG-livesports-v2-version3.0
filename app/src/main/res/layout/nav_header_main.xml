@@ -13,9 +13,8 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="160dp"
-        android:layout_height="100dp"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
+        android:layout_width="180dp"
+        android:layout_height="110dp"
         android:src="@drawable/logo" />
 
     <TextView
@@ -25,14 +24,15 @@
         android:paddingTop="10dp"
         android:text="Android Studio"
         android:textColor="@color/orange"
-        android:textSize="18dp"
-        />
+        android:textSize="23dp"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/t_nav_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="android.studio@android.com"
-        android:textColor="@color/white"/>
+        android:text="android.studio@gmalp.com"
+        android:textColor="@color/blue"
+        android:textSize="18dp"/>
 
 </LinearLayout>

@@ -172,9 +172,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         .position(latLng)
                         .title("Marker")
                         .icon(BitmapDescriptorFactory.fromBitmap(smallMarker)));
-                if (latLng.equals(stadium)){
                     Toast.makeText(getApplicationContext(),toString().valueOf(latitud[positione])+" , "+toString().valueOf(longitud[positione]), Toast.LENGTH_SHORT).show();
-                }
+
             }
         });
     }
