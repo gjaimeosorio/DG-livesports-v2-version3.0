@@ -117,6 +117,7 @@ public class EquiposFragment extends ListFragment implements AdapterView.OnItemC
 
         Toast.makeText(getActivity(), "Buscando Estadio...", Toast.LENGTH_LONG).show();
         Intent intent = new Intent(getActivity(), MapsActivity.class);
+        intent.putExtra("position", position);
         startActivity(intent);//1
 
     }

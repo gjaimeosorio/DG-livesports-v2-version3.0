@@ -54,7 +54,7 @@
         android:textColor="@color/black"
         android:layout_gravity="center"/>
 
-    <LinearLayout
+    <!--<LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -73,20 +73,26 @@
             android:layout_height="60dp"
             android:background="@drawable/icon_google_plus"/>
     </LinearLayout>
+-->
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/login_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp" />
 
-
-    <TextView
-        android:paddingTop="3dp"
-        android:id="@+id/t_Registro"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:text="Registrarse"
-        android:textColor="@color/lightskyblue"
-        android:textSize="18dp"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:clickable="true"/>
+        <TextView
+            android:paddingTop="3dp"
+            android:id="@+id/t_Registro"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="Registrarse"
+            android:textColor="@color/blue"
+            android:textSize="18dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:clickable="true"/>
 
     </LinearLayout>
-
 </ScrollView>

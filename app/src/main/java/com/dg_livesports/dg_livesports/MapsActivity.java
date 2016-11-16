@@ -4,25 +4,22 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 import android.widget.Toast;
-
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
+    private int positione;
     private GoogleMap mMap;
     private double[] latitud = {42.8371821,
             43.2642396,
@@ -64,31 +61,34 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             -5.6374561,
             -0.360419,
             -0.1034635};
-    private String[] estadio = {"de Mendizorroza",
-            "San Mamés",
-            "Vicente Calderón",
-            "Camp Nou",
-            "de atletismo Balaídos",
-            "Ciudad Deportiva de Riazor",
-            "Ipurua",
-            "Cornellà-El Prat",
-            "Nuevo Los Cármenes",
-            "Gran Canaria",
-            "Municipal Butarque",
-            "La Rosaleda",
-            "El Sadar",
-            "Anoeta",
-            "Benito Villamarín",
-            "Santiago Bernabéu",
-            "Ramón Sánchez-Pizjuán",
-            "El Molinón",
-            "Mestalla",
-            "El Madrigal"};
+    private String[] estadio = {"Estadio de Mendizorroza",
+            "Estadio San Mamés",
+            "Estadio Vicente Calderón",
+            "Estadio Camp Nou",
+            "Estadio de atletismo Balaídos",
+            "Estadio Ciudad Deportiva de Riazor",
+            "Estadio Ipurua",
+            "Estadio Cornellà-El Prat",
+            "Estadio Nuevo Los Cármenes",
+            "Estadio Gran Canaria",
+            "Estadio Municipal Butarque",
+            "Estadio La Rosaleda",
+            "Estadio El Sadar",
+            "Estadio Anoeta",
+            "Estadio Benito Villamarín",
+            "Estadio Santiago Bernabéu",
+            "Estadio Ramón Sánchez-Pizjuán",
+            "Estadio El Molinón",
+            "Estadio Mestalla",
+            "Estadio El Madrigal"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
+        Bundle extras = getIntent().getExtras();//Recibo info de posicion de la tabla
+        positione = extras.getInt("position");
 /*
         ////// botÃ³n de atrÃ¡s////////
         ActionBar actionBar = getSupportActionBar();
@@ -157,29 +157,41 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setMyLocationEnabled(true);
         mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
 
-        final LatLng udea = new LatLng(40.4521836 , -3.6927905);
+        final LatLng stadium = new LatLng(latitud[positione] , longitud[positione]);
         mMap.addMarker(new MarkerOptions()
-                .position(udea)
-                .title("Estadio Santiago Bernabeu")
+                .position(stadium)
+                .title(estadio[positione])
                 .icon(BitmapDescriptorFactory.fromBitmap(smallMarker)));
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(udea,15));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(stadium,15));
 
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
-                double latitude, longitude;
-                latitude = (latLng.latitude);
-                longitude = (latLng.longitude);
                 mMap.addMarker(new MarkerOptions()
                         .position(latLng)
                         .title("Marker")
                         .icon(BitmapDescriptorFactory.fromBitmap(smallMarker)));
-                if (latLng.equals(udea)){
-                    Toast.makeText(getApplicationContext(),toString().valueOf(latitude), Toast.LENGTH_SHORT).show();
+                if (latLng.equals(stadium)){
+                    Toast.makeText(getApplicationContext(),toString().valueOf(latitud[positione])+" , "+toString().valueOf(longitud[positione]), Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
+
+    ////// botón de atrás////////
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
 }
 

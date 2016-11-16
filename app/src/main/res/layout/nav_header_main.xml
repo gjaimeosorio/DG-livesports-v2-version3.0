@@ -24,8 +24,9 @@
         android:layout_height="wrap_content"
         android:paddingTop="10dp"
         android:text="Android Studio"
-        android:textColor="@color/white"
-        android:textSize="18dp"/>
+        android:textColor="@color/orange"
+        android:textSize="18dp"
+        />
 
     <TextView
         android:id="@+id/t_nav_email"

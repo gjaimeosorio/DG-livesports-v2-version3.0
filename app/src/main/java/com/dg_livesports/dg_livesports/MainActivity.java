@@ -27,6 +27,12 @@ import android.widget.Toast;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
+import com.facebook.login.LoginManager;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.FirebaseAuth;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     SharedPreferences prefs;
@@ -45,9 +51,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private Toolbar toolbar;
 
+    TextView tNombre, tMail, tUID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        AppEventsLogger.activateApp(this);
         setContentView(R.layout.activity_main);
 
         /////detectar si hay internet////////
@@ -141,7 +151,41 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mFragmentTransaction = mFragmentManager.beginTransaction();
         mFragmentTransaction.replace(R.id.containerView,new MainTabsFragment()).commit();
 
+        //*********Logueo con Facebook*********
+        //tNombre = (TextView) findViewById(R.id.tNombre);
+        //tMail = (TextView) findViewById(R.id.tMail);
+        //tUID = (TextView) findViewById(R.id.tUID);
+
+        /*FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        if (user!=null){
+            String name = user.getDisplayName();
+            String email = user.getEmail();
+            String uid = user.getUid();
+
+            tNombre.setText(name);
+            tMail.setText(email);
+            tUID.setText(uid);
+        }else {
+            goLoginActivity();
+        }*/
+
+
+    }//End OnCreate
+
+    public void logout(View view){
+        LoginManager.getInstance().logOut();
+        FirebaseAuth.getInstance().signOut();
+        goLoginActivity();
     }
+
+    private void goLoginActivity() {
+        Intent intent = new Intent (getApplicationContext(), LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
 
     @Override
     public void onBackPressed() {

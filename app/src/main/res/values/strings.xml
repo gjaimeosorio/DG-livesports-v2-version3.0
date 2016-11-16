@@ -1,4 +1,6 @@
 <resources>
+    <string name="facebook_app_id">224835571285056</string>
+
     <string name="app_name">DG LiveSports</string>
     <string name="title_activity_main">DG LiveSports</string>
     <string name="title_activity_configuraciones">Configuracion</string>
