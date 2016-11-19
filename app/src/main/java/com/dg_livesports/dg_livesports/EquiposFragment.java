@@ -58,8 +58,8 @@ public class EquiposFragment extends ListFragment implements AdapterView.OnItemC
 
     //private String URL_API = HTTP_EVENT + "?key="+keyAPI+"&tz="+tzAPI+"&format="+formatAPI+"&req="+reqAPI+"&date="+dateAPI;
 
-    //private String FIREBASE_URL="https://final-dygsports.firebaseio.com";
-    private String FIREBASE_URL="https://equiposfavoritos-36db4.firebaseio.com";
+    private String FIREBASE_URL="https://final-dygsports.firebaseio.com";
+    //private String FIREBASE_URL="https://equiposfavoritos-36db4.firebaseio.com";
     private Firebase firebasedatos;
 
     String idTeam;

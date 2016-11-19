@@ -21,6 +21,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
+    private Button cerrar_sesion;
     private String user;
     private String password;
     private String email;
@@ -59,6 +61,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         FacebookSdk.sdkInitialize(getApplicationContext());
         AppEventsLogger.activateApp(this);
         setContentView(R.layout.activity_main);
+
+        cerrar_sesion = (Button) findViewById(R.id.cer_ses);
 
         /////detectar si hay internet////////
 
@@ -152,11 +156,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mFragmentTransaction.replace(R.id.containerView,new MainTabsFragment()).commit();
 
         //*********Logueo con Facebook*********
-        //tNombre = (TextView) findViewById(R.id.tNombre);
-        //tMail = (TextView) findViewById(R.id.tMail);
-        //tUID = (TextView) findViewById(R.id.tUID);
+        tNombre = (TextView) findViewById(R.id.tNombre);
+        tMail = (TextView) findViewById(R.id.tMail);
+        tUID = (TextView) findViewById(R.id.tUID);
 
-        /*FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         if (user!=null){
             String name = user.getDisplayName();
@@ -167,8 +171,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             tMail.setText(email);
             tUID.setText(uid);
         }else {
-            goLoginActivity();
-        }*/
+            //goLoginActivity();
+        }
+
+        cerrar_sesion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                logout(view);
+            }
+        });
 
 
     }//End OnCreate

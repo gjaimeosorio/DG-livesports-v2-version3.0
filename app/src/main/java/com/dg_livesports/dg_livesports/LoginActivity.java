@@ -60,8 +60,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     ArrayList<Usuarios_data> info;
 
-    //private String FIREBASE_URL="https://final-dygsports.firebaseio.com";
-    private String FIREBASE_URL="https://equiposfavoritos-36db4.firebaseio.com";
+    private String FIREBASE_URL="https://final-dygsports.firebaseio.com";
+    //private String FIREBASE_URL="https://equiposfavoritos-36db4.firebaseio.com";
     private Firebase firebasedatos;
 
     Button b_entrar;
@@ -107,6 +107,22 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         loginButton = (LoginButton) findViewById(R.id.login_button);
         loginButton.setReadPermissions(Arrays.asList("email"));
+        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+
+            }
+        });
 
         mGoogleBtn = (SignInButton) findViewById(R.id.sign_in_button);
 
