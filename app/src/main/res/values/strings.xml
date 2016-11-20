@@ -23,7 +23,7 @@
     <string name="social">Social</string>
     <string name="notificaciones">Notificaciones</string>
     <string name="configuracion">Configuracion</string>
-    <string name="cerrar_sesion">Cerrar Sesiòn</string>
+    <string name="cerrar_sesion">Cerrar Sesión</string>
 
     <!-- Estados de sesion -->
     <string name="abierta">abierta</string>

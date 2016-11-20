@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
-    private Button cerrar_sesion;
     private String user;
     private String password;
     private String email;
@@ -53,16 +52,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private Toolbar toolbar;
 
-    TextView tNombre, tMail, tUID;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FacebookSdk.sdkInitialize(getApplicationContext());
         AppEventsLogger.activateApp(this);
         setContentView(R.layout.activity_main);
-
-        cerrar_sesion = (Button) findViewById(R.id.cer_ses);
 
         /////detectar si hay internet////////
 
@@ -155,38 +150,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mFragmentTransaction = mFragmentManager.beginTransaction();
         mFragmentTransaction.replace(R.id.containerView,new MainTabsFragment()).commit();
 
-        //*********Logueo con Facebook*********
-        tNombre = (TextView) findViewById(R.id.tNombre);
-        tMail = (TextView) findViewById(R.id.tMail);
-        tUID = (TextView) findViewById(R.id.tUID);
+      }//End OnCreate
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-        if (user!=null){
-            String name = user.getDisplayName();
-            String email = user.getEmail();
-            String uid = user.getUid();
-
-            tNombre.setText(name);
-            tMail.setText(email);
-            tUID.setText(uid);
-        }else {
-            //goLoginActivity();
-        }
-
-        cerrar_sesion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                logout(view);
-            }
-        });
-
-
-    }//End OnCreate
-
-    public void logout(View view){
+    public void logout(){
         LoginManager.getInstance().logOut();
         FirebaseAuth.getInstance().signOut();
+        Toast.makeText(getApplicationContext(), "Sesión cerrada", Toast.LENGTH_SHORT).show();
         goLoginActivity();
     }
 
@@ -194,9 +163,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Intent intent = new Intent (getApplicationContext(), LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK |
                 Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("sesion","cerrada");
         startActivity(intent);
     }
-
 
     @Override
     public void onBackPressed() {
@@ -241,9 +210,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         if (id == R.id.action_cerrar_sesion) {
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            intent.putExtra("sesion","cerrada");
-            startActivity(intent);
+            //Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            //intent.putExtra("sesion","cerrada");
+            logout();
+            //startActivity(intent);
             finish();
 
             return true;

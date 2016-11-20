@@ -90,7 +90,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private static final int RC_SIGN_IN = 1;    //Login con Google
     private static final String TAG ="LoginActivity" ;
-    private SignInButton mGoogleBtn;
+    private Button mGoogleBtn;
     private GoogleApiClient mGoogleApiClient;
 
     private int optLog; //1. login con google 2. login con Facebook
@@ -124,7 +124,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
         });
 
-        mGoogleBtn = (SignInButton) findViewById(R.id.sign_in_button);
+        mGoogleBtn = (Button) findViewById(R.id.sign_in_button);
 
         mGoogleBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -175,48 +175,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user!=null){
-                    Toast.makeText(getApplicationContext(), "login exitoso", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Login exitoso"
+                            +"\n"+user.getDisplayName()
+                            +"\n"+user.getEmail(), Toast.LENGTH_LONG).show();
                     goMainActivity();
-
-
                 }
-
-            }
+            }//Id del usuario user.getUid();
         };
-
-        /*
-
-        //Logueo con Google
-        mGoogleBtn = (SignInButton)findViewById(R.id.sign_in_button);
-
-        // Build a GoogleApiClient with access to the Google Sign-In API and the
-// options specified by gso.
-        // Configure sign-in to request the user's ID, email address, and basic
-// profile. ID and basic profile are included in DEFAULT_SIGN_IN.
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
-
-        GoogleApiClient = new GoogleApiClient.Builder(getApplicationContext())
-                .enableAutoManage(this, new GoogleApiClient.OnConnectionFailedListener() {
-                    @Override
-                    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-                        Toast.makeText(LoginActivity.this,"Error login",Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .addApi(Auth.GOOGLE_SIGN_IN_API,gso)
-                .build();
-
-        mGoogleBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                signIn();
-            }
-        });
-
-        */
-
 
         info = new ArrayList<>();
         Firebase.setAndroidContext(this);
@@ -234,7 +199,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         refreshPrefs();
         if (extras != null) {
             sesion = extras.getString("sesion");
-            Toast.makeText(this, "Sesiòn "+sesion,Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Sesión "+sesion,Toast.LENGTH_SHORT).show();
             user = "Invitado";
             password = "";
             email = "";
@@ -362,6 +327,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         Intent intent = new Intent (getApplicationContext(), MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK |
                 Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("sesion","abierta");
         startActivity(intent);
     }
 
