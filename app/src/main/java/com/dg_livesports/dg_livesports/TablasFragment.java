@@ -80,9 +80,6 @@ public class TablasFragment extends Fragment {
 
         return x;
 
-
-
-
     }
 
     public class JsonTask extends AsyncTask<URL, Void, List<Clasificaciones>>{

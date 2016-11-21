@@ -18,12 +18,16 @@ public class Partidos {
     private String extraTxt;// tiempo que falta o que se jugo un partido
     private String hour;// hora del partido
     private String minute;
+    private String live_minute;// minuto en vivo
     public Bitmap local_shield;
     public Bitmap visitor_shield;
     public Bitmap cflag;
 
-    public Partidos() {
-    }
+    public Partidos() {}
+
+    public String getLive_minute() {return live_minute;}
+
+    public void setLive_minute(String live_minute) {this.live_minute = live_minute;}
 
     public String getLocal() {
         return local;

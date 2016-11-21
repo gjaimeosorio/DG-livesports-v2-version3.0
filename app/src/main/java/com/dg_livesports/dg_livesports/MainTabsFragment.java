@@ -116,12 +116,21 @@ public class MainTabsFragment extends Fragment {
                     filtro_mostrar = "Todos";
                     editor.putString("var_filtro",filtro_mostrar);
                     editor.commit();
-
+                    /*String sesion;
+                    sesion = String.valueOf(prefs.getString("var_sesion","abierto"));
+                    Intent intent = new Intent(getActivity(), MainActivity.class);
+                    intent.putExtra("var_sesion",sesion);
+                    startActivity(intent);*/
 
                 }else {
                     filtro_mostrar = "Favoritos";
                     editor.putString("var_filtro",filtro_mostrar);
                     editor.commit();
+                    /*String sesion;
+                    sesion = String.valueOf(prefs.getString("var_sesion","abierto"));
+                    Intent intent = new Intent(getActivity(), MainActivity.class);
+                    intent.putExtra("var_sesion",sesion);
+                    startActivity(intent);*/
                 }
 
                 int position = tabLayout.getSelectedTabPosition();

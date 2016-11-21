@@ -173,11 +173,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         firebaseAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user!=null){
+                FirebaseUser user2 = firebaseAuth.getCurrentUser();
+                if (user2!=null){
                     Toast.makeText(getApplicationContext(), "Login exitoso"
-                            +"\n"+user.getDisplayName()
-                            +"\n"+user.getEmail(), Toast.LENGTH_LONG).show();
+                            +"\n"+user2.getDisplayName()
+                            +"\n"+user2.getEmail(), Toast.LENGTH_LONG).show();
+                    user = user2.getDisplayName();
+                    email = user2.getEmail();
                     goMainActivity();
                 }
             }//Id del usuario user.getUid();
@@ -327,7 +329,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         Intent intent = new Intent (getApplicationContext(), MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK |
                 Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.putExtra("sesion","abierta");
+        sesion = "abierta";
+        savePrefs();
         startActivity(intent);
     }
 

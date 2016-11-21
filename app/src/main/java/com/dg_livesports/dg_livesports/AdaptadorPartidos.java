@@ -61,6 +61,7 @@ public class AdaptadorPartidos extends ArrayAdapter<Partidos> {
         String hora = item.getHour()+":"+item.getMinute();
 
         t_compentition_name.setText(item.getCompetition_name());
+        //t_date.setText(item.getLive_minute());
         t_date.setText(item.getExtraTxt());
         t_local.setText(item.getLocal());
         if (jugado.equals("x-x")) t_resultado.setText(hora);

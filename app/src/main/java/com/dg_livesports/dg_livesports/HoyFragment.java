@@ -72,10 +72,12 @@ public class HoyFragment extends ListFragment {
         String dateAPI = String.valueOf(year+"-"+month+"-"+day);//fecha actual
 
         String URL_API = HTTP_EVENT + "?key="+keyAPI+"&tz="+tzAPI+"&format="+formatAPI+"&req="+reqAPI+"&date="+dateAPI;
+        //String URL_API2 = HTTP_EVENT + "?key="+keyAPI+"&tz="+"Europe/Madrid"+"&format="+formatAPI+"&req="+"livescore";
 
         try {
 
             new JsonTask(getContext()).execute(new URL(URL_API));
+            //new JsonTask(getContext()).execute(new URL(URL_API2));
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -203,10 +205,12 @@ public class HoyFragment extends ListFragment {
                         partidos.setURLlocal_shield(c.getString("local_shield"));
                         partidos.setURLvisitor_shield(c.getString("visitor_shield"));
                         partidos.setDate(c.getString("date"));
+                        //partidos.setLive_minute(c.getString("live_minute"));
                         partidos.setResult(c.getString("result"));
                         partidos.setExtraTxt(c.getString("extraTxt"));
                         partidos.setHour(c.getString("hour"));
                         partidos.setMinute(c.getString("minute"));
+
 
                         lista.add(partidos);
 
