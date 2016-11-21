@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         refreshPrefs();
         if (extras != null) {
             sesion = extras.getString("sesion");
-            Toast.makeText(this, "Sesiòn "+sesion,Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Sesión "+sesion,Toast.LENGTH_SHORT).show();
 
             user = "Invitado";
             password = "";
